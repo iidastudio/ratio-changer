@@ -1,0 +1,21 @@
+{
+  "id": "477ff5d3",
+  "name": "Ratio Changer",
+  "version": "1.0.0",
+  "icons": [
+      { "width": 24, "height": 24, "path": "images/icon@1x.png" },
+      { "width": 48, "height": 48, "path": "images/icon@2x.png" }
+  ],
+  "host": {
+      "app": "XD",
+      "minVersion": "30.0"
+  },
+  "languages": ["en", "ja"],
+  "uiEntryPoints": [
+      {
+        "type": "panel",
+        "label": "Ratio Changer",
+        "panelId": "ratiochanger"
+      }
+  ]
+}
