@@ -101,6 +101,37 @@ const create = () => {
 
   <hr />
 
+  <div class="basis-list" id="basis-list">
+    <h2 id="orientation-header">${strings[uiLang].orientation}</h2>
+    <ul>
+      <li>
+        <label for="landscape">
+          <input
+            type="radio"
+            name="selectOrientation"
+            id="landscape"
+            value="landscape"
+            checked="checked"
+          />
+          ${strings[uiLang].landscape}
+        </label>
+      </li>
+      <li>
+        <label for="portrait">
+          <input
+            type="radio"
+            name="selectOrientation"
+            id="portrait"
+            value="portrait"
+          />
+          ${strings[uiLang].portrait}
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <hr />
+
   <div class="ratio-list" id="ratio-list">
     <h2 id="ratio-header">${strings[uiLang].ratioHeader}</h2>
     <ul>
@@ -193,56 +224,83 @@ const create = () => {
 const changer = () => {
   editDocument({ editLabel: "trans object ratio" }, () => {
     
-    // get basis checked value
     let basisCheckedValue;
-    const basis = panel.querySelectorAll('input[name="basis"]');
-    basis.forEach((basis) => {
-      if (basis.checked) {
-        basisCheckedValue = basis.value;
-      }
-    });
-
-    // get ratio checked value
+    let orientationCheckedValue;
     let ratioCheckedValue;
-    const ratios = panel.querySelectorAll('input[name="ratio"]');
-    ratios.forEach((ratio) => {
-      if (ratio.checked) {
-        ratioCheckedValue = ratio.value;
-      }
-    });
+
+    // checked function
+    let checkedItem;
+    const checkedFn = (name) => {
+      const items = panel.querySelectorAll(`input[name=${name}]`);
+      items.forEach((item) => {
+        if (item.checked) {
+          checkedItem = item.value;
+        };
+      });
+      return checkedItem;
+    }
+    basisCheckedValue = checkedFn('basis');
+    orientationCheckedValue = checkedFn('selectOrientation');
+    ratioCheckedValue = checkedFn('ratio');
 
     // value(string) -> figures(number)
     let ratio;
+    let num1;
+    let num2;
     switch (ratioCheckedValue) {
       case "square":
-        ratio = 1;
+        num1 = 1;
+        num2 = 1;
         break;
       case "golden":
-        ratio = (1 + Math.sqrt(5)) / 2;
+        num1 = 1 + Math.sqrt(5);
+        num2 = 2
         break;
       case "yamato":
-        ratio = Math.sqrt(2);
+        num1 = Math.sqrt(2);
+        num2 = 1;
         break;
       case "retro":
-        ratio = 4 / 3;
+        num1 = 4;
+        num2 = 3;
         break;
       case "camera":
-        ratio = 3 / 2;
+        num1 = 3;
+        num2 = 2;
         break;
       case "monitor":
-        ratio = 16 / 9;
+        num1 = 16;
+        num2 = 9;
         break;
       case "wide":
-        ratio = 16 / 10;
+        num1 = 16;
+        num2 = 10;
         break;
       case "triangle":
-        ratio = 2 / Math.sqrt(3);
+        num1 = 2;
+        num2 = Math.sqrt(3);
         break;
       default:
         console.log("Select ratio!");
         break;
     }
+    
+    // orientation landscape or portrait
+    if (basisCheckedValue === 'basis-width') {
+      if (orientationCheckedValue === 'landscape') {
+        ratio = num1 / num2;
+      }else if (orientationCheckedValue === 'portrait') {
+        ratio = num2 / num1;
+      } 
+    } else if (basisCheckedValue === 'basis-height') {
+      if (orientationCheckedValue === 'landscape') { 
+        ratio = num2 / num1;
+      }else if (orientationCheckedValue === 'portrait') {
+        ratio = num1 / num2;
+      } 
+    }
 
+    // custom ratio, ratio overwrite
     const left = panel.querySelector('input[name="custom-left"]').value;
     const right = panel.querySelector('input[name="custom-right"]').value;
     if (left > 0 && right > 0) {

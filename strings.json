@@ -1,6 +1,9 @@
 {
   "en": {
     "basisHeader": "Reference side",
+    "orientation": "Orientation",
+    "landscape": "Landscape",
+    "portrait": "Portrait",
     "ratioHeader": "Select ratio",
     "squareText": "Square",
     "goldenText": "Golden",
@@ -15,6 +18,9 @@
   },
   "ja": {
     "basisHeader": "基準にする辺",
+    "orientation": "向き",
+    "landscape": "横長",
+    "portrait": "縦長",
     "ratioHeader": "比率を選択",
     "squareText": "正方形",
     "goldenText": "黄金比",
