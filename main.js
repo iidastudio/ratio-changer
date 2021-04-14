@@ -68,7 +68,17 @@ const create = () => {
     display: block;
     margin: 20px auto;
   }
+  .is-warning form,
+  .warning-text {
+    display: none;
+  }
+  .is-warning .warning-text {
+    display: block;
+  }
 </style>
+<div class="wrapper">
+<p class="warning-text">Please select one or more objects for which you want to change the aspect ratio.</p>
+<form method="panel">
 <div class="container">
   <div class="basis-list" id="basis-list">
     <h2 id="basis-header">${strings[uiLang].basisHeader}</h2>
@@ -209,6 +219,8 @@ const create = () => {
   </div>
 </div>
 <button class="trans-button" id="run">${strings[uiLang].run}</button>
+</form>
+</div>
   `;
 
   panel = document.createElement("div");
@@ -327,10 +339,21 @@ const show = (event) => {
   if (!panel) event.node.appendChild(create());
 };
 
+const update = (selection) => {
+  const wrapper = document.querySelector(".wrapper");
+
+  if(selection.items.length === 0) {
+    wrapper.classList.add("is-warning");
+  } else {
+    wrapper.classList.remove("is-warning");
+  }
+}
+
 module.exports = {
   panels: {
     ratiochanger: {
       show,
+      update,
     },
   },
 };
