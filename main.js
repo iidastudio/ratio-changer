@@ -77,7 +77,7 @@ const create = () => {
   }
 </style>
 <div class="wrapper">
-<p class="warning-text">Please select one or more objects for which you want to change the aspect ratio.</p>
+<p class="warning-text">${strings[uiLang].warningText}</p>
 <form method="panel">
 <div class="container">
   <div class="basis-list" id="basis-list">

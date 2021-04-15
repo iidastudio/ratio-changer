@@ -1,10 +1,11 @@
 {
   "en": {
+    "warningText": "Please select one or more objects for which you want to change the aspect ratio.",
     "basisHeader": "Reference side",
     "orientation": "Orientation",
     "landscape": "Landscape",
     "portrait": "Portrait",
-    "ratioHeader": "Select ratio",
+    "ratioHeader": "Aspect ratio",
     "squareText": "Square",
     "goldenText": "Golden",
     "yamatoText": "Yamato",
@@ -17,11 +18,12 @@
     "run": "RUN"
   },
   "ja": {
+    "warningText": "アスペクト比を変更したいオブジェクト（複数可）を選択してください。",
     "basisHeader": "基準にする辺",
     "orientation": "向き",
     "landscape": "横長",
     "portrait": "縦長",
-    "ratioHeader": "比率を選択",
+    "ratioHeader": "アスペクト比",
     "squareText": "正方形",
     "goldenText": "黄金比",
     "yamatoText": "白銀比（大和比）",
